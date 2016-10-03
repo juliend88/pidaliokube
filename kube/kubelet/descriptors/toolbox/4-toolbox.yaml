@@ -162,7 +162,8 @@ items:
               volumeMounts:
                 - mountPath: /keys
                   name: key-storage
+                  readOnly: true
           volumes:
             - name: key-storage
-              hostPath:
-                path: /home/core/keys
+              secret:
+                secretName: "toolbox"

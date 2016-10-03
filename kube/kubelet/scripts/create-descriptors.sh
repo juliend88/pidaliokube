@@ -22,5 +22,8 @@ then
     /opt/bin/kubectl create -f /etc/kubernetes/descriptors/monitoring --namespace=monitoring
 fi
 # Initialize Toolbox
-    /opt/bin/kubectl create -f /etc/kubernetes/descriptors/toolbox/
+ssh-keygen -t rsa key
+/opt/bin/kubectl create secret generic toolbox --from-file=ssh-privatekey=key --from-file=ssh-publickey=.ssh/key.pub
+rm -f key key.pub
+/opt/bin/kubectl create -f /etc/kubernetes/descriptors/toolbox/
 exit 0
