@@ -22,8 +22,26 @@ then
     /opt/bin/kubectl create -f /etc/kubernetes/descriptors/monitoring --namespace=monitoring
 fi
 # Initialize Toolbox
-ssh-keygen -t rsa key
-/opt/bin/kubectl create secret generic toolbox --from-file=ssh-privatekey=key --from-file=ssh-publickey=.ssh/key.pub
+ssh-keygen -t rsa -f key
+/opt/bin/kubectl create secret generic toolbox --from-file=ssh-privatekey=key --from-file=ssh-publickey=key.pub
 rm -f key key.pub
+# Openstack secrets
+source /etc/openstack.env
+OS_USERNAME=$(echo -n $OS_USERNAME | base64)
+OS_PASSWORD=$(echo -n $OS_PASSWORD | base64)
+OS_AUTH_URL=$(echo -n $OS_AUTH_URL | base64)
+OS_TENANT_NAME=$(echo -n $OS_TENANT_NAME | base64)
+cat <<EOF | kubectl create -f -
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: openstack
+  type: Opaque
+  data:
+    auth: $OS_AUTH_URL
+    tenant: $OS_TENANT_NAME
+    password: $OS_PASSWORD
+    username: $OS_USERNAME
+EOF
 /opt/bin/kubectl create -f /etc/kubernetes/descriptors/toolbox/
 exit 0

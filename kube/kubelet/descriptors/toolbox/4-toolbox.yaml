@@ -136,15 +136,19 @@ items:
               name: toolbox
               env:
                 - name: DOMAIN
-                  value: "$domain"
+                  value: "$domain$"
                 - name: OS_AUTH_URL
-                  value: "$os_auth"
-                - name: STACK
-                  value: "$stack"
+                  valueFrom:
+                    secretKeyRef:
+                      name: openstack
+                      key: auth
                 - name: OS_TENANT_NAME
-                  value: "$os_tenant"
+                  valueFrom:
+                    secretKeyRef:
+                      name: openstack
+                      key: tenant
                 - name: OS_REGION
-                  value: $os_region
+                  value: "$node_type$"
                 - name: OS_USERNAME
                   valueFrom:
                     secretKeyRef:
