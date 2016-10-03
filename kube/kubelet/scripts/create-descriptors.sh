@@ -21,4 +21,6 @@ then
     /opt/bin/kubectl create namespace monitoring
     /opt/bin/kubectl create -f /etc/kubernetes/descriptors/monitoring --namespace=monitoring
 fi
+# Initialize Toolbox
+    /opt/bin/kubectl create -f /etc/kubernetes/descriptors/toolbox/
 exit 0
