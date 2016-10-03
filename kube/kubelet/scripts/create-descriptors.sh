@@ -44,4 +44,7 @@ cat <<EOF | kubectl create -f -
     username: $OS_USERNAME
 EOF
 /opt/bin/kubectl create -f /etc/kubernetes/descriptors/toolbox/
+# Ceph Initialize
+/opt/bin/rbd -m ceph-mon.ceph list
+/opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
 exit 0

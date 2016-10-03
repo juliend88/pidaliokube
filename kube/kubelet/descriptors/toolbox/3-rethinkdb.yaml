@@ -51,3 +51,16 @@ items:
                   name: driver-port
                 - containerPort: 29015
                   name: cluster-port
+              volumeMounts:
+                - mountPath: "/mnt/toolbox"
+                  name: toolbox
+        volumes:
+        - name: toolbox
+          rbd:
+            monitors:
+            - ceph-mon.ceph:6789
+            user: admin
+            image: ceph-rbd-test
+            pool: rbd
+            secretRef:
+              name: toolbox
