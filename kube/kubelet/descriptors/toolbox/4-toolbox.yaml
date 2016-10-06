@@ -167,7 +167,17 @@ items:
                 - mountPath: /keys
                   name: key-storage
                   readOnly: true
+                - mountPath: /usr/bin/docker
+                  name: docker-bin
+                - mountPath: /var/run/docker.sock
+                  name: docker-sock
           volumes:
             - name: key-storage
               secret:
                 secretName: "toolbox"
+            - name: docker-bin
+              hostPath:
+                path: /usr/bin/docker
+            - name: docker-sock
+              hostPath:
+                path: /var/run/docker.sock
