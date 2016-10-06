@@ -128,9 +128,7 @@ items:
             - image: cloudwattfr/toolbox-server:dev
               imagePullPolicy: Always
               command:
-                - node
-                - --harmony
-                - server.bundle.js
+                - /entrypoint.sh
                 - $private_ipv4
                 - $public_ipv4
               name: toolbox
