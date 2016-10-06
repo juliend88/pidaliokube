@@ -52,15 +52,15 @@ items:
                 - containerPort: 29015
                   name: cluster-port
               volumeMounts:
-                - mountPath: "/mnt/toolbox"
+                - mountPath: "/data"
                   name: toolbox
-        volumes:
-        - name: toolbox
-          rbd:
-            monitors:
-            - ceph-mon.ceph:6789
-            user: admin
-            image: ceph-rbd-test
-            pool: rbd
-            secretRef:
-              name: toolbox
+          volumes:
+          - name: toolbox
+            rbd:
+              monitors:
+              - ceph-mon.ceph:6789
+              user: admin
+              image: toolbox
+              pool: rbd
+              secretRef:
+                name: ceph-client-key          

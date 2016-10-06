@@ -39,7 +39,7 @@ items:
             component: toolbox-frontend
         spec:
           containers:
-            - image: cloudwattfr/toolbox-client:2.2
+            - image: cloudwattfr/toolbox-client:dev
               imagePullPolicy: Always
               name: toolbox-frontend
               ports:
@@ -125,7 +125,7 @@ items:
             component: toolbox-backend
         spec:
           containers:
-            - image: cloudwattfr/toolbox-server:2.2
+            - image: cloudwattfr/toolbox-server:dev
               imagePullPolicy: Always
               command:
                 - node
