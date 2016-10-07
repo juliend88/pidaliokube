@@ -14,6 +14,14 @@ if [[ "${CEPH}" == "True" ]]
 then
     /opt/pidalio/kube/kubelet/scripts/ceph/install-ceph.sh
     /opt/bin/kubectl create -f /etc/kubernetes/descriptors/ceph --namespace=ceph
+    until [ "$(/opt/bin/kubectl get pods --namespace=ceph | tail -n +2 | egrep -v '(.*)1/1(.*)Running' | wc -l)" == "0" ]
+    do
+      echo "Waiting for ceph to be ready"
+      sleep 10
+    done
+    # Ceph Initialize
+    echo "Creating toolbox disk in ceph"
+    /opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
 fi
 # Initialize Monitoring
 if [[ "${MONITORING}" == "True" ]]
@@ -44,7 +52,4 @@ cat <<EOF | kubectl create -f -
     username: $OS_USERNAME
 EOF
 /opt/bin/kubectl create -f /etc/kubernetes/descriptors/toolbox/
-# Ceph Initialize
-/opt/bin/rbd -m ceph-mon.ceph list
-/opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
 exit 0
