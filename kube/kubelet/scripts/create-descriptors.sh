@@ -21,7 +21,10 @@ then
     done
     # Ceph Initialize
     echo "Creating toolbox disk in ceph"
-    /opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
+    until /opt/bin/rbd -m ceph-mon.ceph info toolbox
+    do
+      /opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
+    done
 fi
 # Initialize Monitoring
 if [[ "${MONITORING}" == "True" ]]
