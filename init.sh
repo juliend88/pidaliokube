@@ -17,7 +17,8 @@ EXISTING_IPS=$(/opt/bin/weave dns-lookup etcd | sort)
 EXISTING_IDS=""
 for ip in ${EXISTING_IPS}
 do
-    if curl -s -m 1 http://${ip}:2379/v2/stats/self
+    curl -s -m 1 http://${ip}:2379/v2/stats/self
+    if [ $? -eq 0 ]
     then
         IP_ID=$(curl -s -m 10 http://${ip}:2379/v2/stats/self | jq -r .name | cut -d'-' -f 2)
         EXISTING_IDS=${IP_ID},${EXISTING_IDS}
