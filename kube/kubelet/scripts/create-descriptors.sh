@@ -25,11 +25,18 @@ then
     do
       /opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
     done
+    if [[ "${MONITORING}" == "True" ]]
+    then
+        echo "Creating monitoring disk in ceph"
+        until /opt/bin/rbd -m ceph-mon.ceph info prometheus
+        do
+          /opt/bin/rbd -m ceph-mon.ceph create prometheus --size=50G
+        done
+    fi
 fi
 # Initialize Monitoring
 if [[ "${MONITORING}" == "True" ]]
 then
-    /opt/bin/kubectl create namespace monitoring
     /opt/bin/kubectl create -f /etc/kubernetes/descriptors/monitoring --namespace=monitoring
 fi
 # Initialize Toolbox
