@@ -171,7 +171,7 @@ data:
       - job: ceph
         static_configs:
           - targets:
-              - ceph-exporter:9128
+              - ceph-exporter.ceph:9128
 
       # # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L10
       # - job_name: 'kubernetes-apiserver'
