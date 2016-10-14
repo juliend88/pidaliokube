@@ -168,7 +168,7 @@ data:
       evaluation_interval: 10s
 
     scrape_configs:
-      - job: ceph
+      - job_name: ceph
         static_configs:
           - targets:
               - ceph-exporter.ceph:9128
