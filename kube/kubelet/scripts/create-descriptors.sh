@@ -32,6 +32,10 @@ then
         do
           /opt/bin/rbd -m ceph-mon.ceph create prometheus --size=50G
         done
+        until /opt/bin/rbd -m ceph-mon.ceph info grafana
+        do
+          /opt/bin/rbd -m ceph-mon.ceph create grafana --size=1G
+        done
     fi
 fi
 # Initialize Monitoring

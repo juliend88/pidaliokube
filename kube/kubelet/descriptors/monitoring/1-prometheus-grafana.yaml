@@ -46,7 +46,14 @@ spec:
             mountPath: /var
       volumes:
       - name: grafana-persistent-storage
-        emptyDir: {}
+        rbd:
+          monitors:
+          - ceph-mon.ceph:6789
+          user: admin
+          image: grafana
+          pool: rbd
+          secretRef:
+            name: ceph-client-key
 ---
 apiVersion: v1
 kind: Service
