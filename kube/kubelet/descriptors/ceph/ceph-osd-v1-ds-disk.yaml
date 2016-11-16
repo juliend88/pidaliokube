@@ -1,0 +1,103 @@
+---
+kind: DaemonSet
+apiVersion: extensions/v1beta1
+metadata:
+  name: ceph-osd
+  namespace: ceph
+  labels:
+    app: ceph
+    daemon: osd
+spec:
+  template:
+    metadata:
+      labels:
+        app: ceph
+        daemon: osd
+      annotations:
+        pod.alpha.kubernetes.io/init-containers: '[
+            {
+                "name": "osd-prepare",
+                "image": "ceph/daemon:latest",
+                "imagePullPolicy": "Always",
+                "volumeMounts": [
+                  { "name": "devices", "mountPath": "/dev" },
+                  { "name": "ceph", "mountPath": "/var/lib/ceph" },
+                  { "name": "ceph-conf", "mountPath": "/etc/ceph" },
+                  { "name": "ceph-bootstrap-osd-keyring", "mountPath": "/var/lib/ceph/bootstrap-osd" },
+                  { "name": "ceph-bootstrap-mds-keyring", "mountPath": "/var/lib/ceph/bootstrap-mds" },
+                  { "name": "ceph-bootstrap-rgw-keyring", "mountPath": "/var/lib/ceph/bootstrap-rgw" }
+                ],
+                "securityContext": {
+                  "privileged": true
+                },
+                "env": [
+                  { "name": "CEPH_DAEMON", "value": "osd_ceph_disk_prepare" },
+                  { "name": "OSD_DEVICE", "value": "$CEPH_DISK_DEVICE$" },
+                  { "name": "KV_TYPE", "value": "k8s" },
+                  { "name": "CLUSTER", "value": "ceph" },
+                  { "name": "CEPH_GET_ADMIN_KEY", "value": "1" }
+                ],
+                "command": ["/bin/bash", "-c", "if [[ \"$(parted --script ${OSD_DEVICE} print | egrep \"^ 1.*ceph data\")\" ]]; then echo Device already prepared; else /entrypoint.sh; fi"]
+            }
+        ]'
+    spec:
+      nodeSelector:
+        storage: "true"
+      volumes:
+        - name: devices
+          hostPath:
+            path: /dev
+        - name: ceph
+          hostPath:
+            path: /opt/ceph
+        - name: ceph-conf
+          secret:
+            secretName: ceph-conf-combined
+        - name: ceph-bootstrap-osd-keyring
+          secret:
+            secretName: ceph-bootstrap-osd-keyring
+        - name: ceph-bootstrap-mds-keyring
+          secret:
+            secretName: ceph-bootstrap-mds-keyring
+        - name: ceph-bootstrap-rgw-keyring
+          secret:
+            secretName: ceph-bootstrap-rgw-keyring
+      containers:
+        - name: osd-pod
+          image: ceph/daemon:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: devices
+              mountPath: /dev
+            - name: ceph
+              mountPath: /var/lib/ceph
+            - name: ceph-conf
+              mountPath: /etc/ceph
+            - name: ceph-bootstrap-osd-keyring
+              mountPath: /var/lib/ceph/bootstrap-osd
+            - name: ceph-bootstrap-mds-keyring
+              mountPath: /var/lib/ceph/bootstrap-mds
+            - name: ceph-bootstrap-rgw-keyring
+              mountPath: /var/lib/ceph/bootstrap-rgw
+          securityContext:
+            privileged: true
+          env:
+            - name: CEPH_DAEMON
+              value: osd_ceph_disk_activate
+            - name: OSD_DEVICE
+              value: $CEPH_DISK_DEVICE$
+            - name: KV_TYPE
+              value: k8s
+            - name: CLUSTER
+              value: ceph
+            - name: CEPH_GET_ADMIN_KEY
+              value: "1"
+          livenessProbe:
+              tcpSocket:
+                port: 6800
+              initialDelaySeconds: 60
+              timeoutSeconds: 5
+          readinessProbe:
+              tcpSocket:
+                port: 6800
+              timeoutSeconds: 5
