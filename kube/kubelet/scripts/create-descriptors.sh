@@ -33,13 +33,18 @@ then
         -f /etc/kubernetes/descriptors/ceph/ceph-stats-v1-dp.yaml \
         -f /etc/kubernetes/descriptors/ceph/ceph-stats-v1-svc.yaml
     fi
+    until [ "$(/opt/bin/kubectl get pods --namespace=ceph | tail -n +2 | egrep -v '(.*)1/1(.*)Running' | wc -l)" == "0" ]
+    do
+      echo "Waiting for ceph to be ready"
+      sleep 10
+    done
+    echo "Creating toolbox disk in ceph"
+    until /opt/bin/rbd -m ceph-mon.ceph info toolbox
+    do
+      /opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
+    done
     if [[ "${MONITORING}" == "True" ]]
     then
-        until [ "$(/opt/bin/kubectl get pods --namespace=ceph | tail -n +2 | egrep -v '(.*)1/1(.*)Running' | wc -l)" == "0" ]
-        do
-          echo "Waiting for ceph to be ready"
-          sleep 10
-        done
         echo "Creating monitoring disk in ceph"
         until /opt/bin/rbd -m ceph-mon.ceph info prometheus
         do
