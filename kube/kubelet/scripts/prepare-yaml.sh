@@ -7,5 +7,5 @@ do
     sed -i s/\\\$node_type\\\$/${NODE_TYPE}/g ${file}
     sed -i s/\\\$private_ipv4\\\$/${NODE_IP}/g ${file}
     sed -i s/\\\$public_ipv4\\\$/${NODE_PUBLIC_IP}/g ${file}
-    sed -i s/\\\$CEPH_DISK_DEVICE\\\$/${CEPH_DISK_DEVICE}/g ${file}
+    sed -i s#\\\$CEPH_DISK_DEVICE\\\$#${CEPH_DISK_DEVICE}#g ${file}
 done
