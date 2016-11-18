@@ -133,6 +133,8 @@ items:
                 - $public_ipv4$
               name: toolbox
               env:
+                - name: TOKEN
+                  value: "$token$"
                 - name: DOMAIN
                   value: "$domain$"
                 - name: OS_AUTH_URL
