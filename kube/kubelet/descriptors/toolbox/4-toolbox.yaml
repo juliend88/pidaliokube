@@ -135,6 +135,8 @@ items:
               env:
                 - name: TOKEN
                   value: "$token$"
+                - name: STACK_NAME
+                  value: "$stack_name$"
                 - name: DOMAIN
                   value: "$domain$"
                 - name: OS_AUTH_URL
