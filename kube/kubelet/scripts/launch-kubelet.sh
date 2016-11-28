@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-export DOCKER_HOST=unix:///var/run/weave/weave.sock
-APISERVER_HOST=$(/opt/bin/weave dns-lookup pidalio-apiserver)
 mkdir -p /home/core/.kube
 cat <<EOF > /home/core/.kube/config
 apiVersion: v1
 clusters:
 - cluster:
-    server: http://${APISERVER_HOST}:8080
+    server: http://pidalio-apiserver:8080
   name: local
 contexts:
 - context:
@@ -20,15 +18,6 @@ users:
 - name: local
 EOF
 chown -R core:core /home/core/.kube
-(
-    sleep 10
-    until [[ "$(/usr/bin/curl -s -t 10 http://$APISERVER_HOST:8080/healthz)" != "ok" ]]
-    do
-        echo "API Server OK"
-        sleep 10
-    done
-    /usr/bin/pkill kubelet
-) &
 echo "Setting DNS"
 WEAVE_DNS_ADDRESS=$(/opt/bin/weave report | jq -r .DNS.Address | cut -d ':' -f 1)
 cat <<EOF > /etc/resolv.conf
