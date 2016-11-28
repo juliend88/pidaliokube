@@ -20,7 +20,7 @@ APISERVER_HOST=$(weave dns-lookup pidalio-apiserver)
     --name=pidalio-proxy \
     quay.io/coreos/hyperkube:v1.4.6_coreos.0 \
     /hyperkube \
-    kube-proxy \
+    proxy \
     --master=https://pidalio-apiserver \
     --hostname-override=${NODE_PUBLIC_IP} \
     --kubeconfig=/etc/kubernetes/kubeconfig.yaml \
