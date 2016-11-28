@@ -27,7 +27,7 @@ chown -R core:core /home/core/.kube
         echo "API Server OK"
         sleep 10
     done
-    /usr/bin/docker rm -f pidalio-node
+    /usr/bin/pkill kubelet
 ) &
 echo "Setting DNS"
 WEAVE_DNS_ADDRESS=$(/opt/bin/weave report | jq -r .DNS.Address | cut -d ':' -f 1)

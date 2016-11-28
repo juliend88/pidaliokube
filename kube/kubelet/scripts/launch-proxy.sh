@@ -8,7 +8,7 @@ APISERVER_HOST=$(weave dns-lookup pidalio-apiserver)
         echo "API Server OK"
         sleep 10
     done
-    /usr/bin/docker rm -f pidalio-proxy
+    /usr/bin/pkill kube-proxy
 ) &
 echo "Setting DNS"
 WEAVE_DNS_ADDRESS=$(/opt/bin/weave report | jq -r .DNS.Address | cut -d ':' -f 1)
