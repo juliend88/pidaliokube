@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-mkdir -p /home/core/.kube
+export DOCKER_HOST=unix:///var/run/weave/weave.sock
 APISERVER_HOST=$(weave dns-lookup pidalio-apiserver)
+mkdir -p /home/core/.kube
 cat <<EOF > /home/core/.kube/config
 apiVersion: v1
 clusters:
@@ -19,8 +20,15 @@ users:
 - name: local
 EOF
 chown -R core:core /home/core/.kube
-export DOCKER_HOST=unix:///var/run/weave/weave.sock
-/usr/bin/docker pull quay.io/coreos/hyperkube:v1.4.6_coreos.0
+(
+    sleep 10
+    until [[ "$(/usr/bin/curl -s -t 10 http://$APISERVER_HOST:8080/healthz)" != "ok" ]]
+    do
+        echo "API Server OK"
+        sleep 10
+    done
+    /usr/bin/docker rm -f pidalio-node
+) &
 /usr/bin/docker run \
     --volume /var/lib/docker:/var/lib/docker \
     --volume /var/lib/kubelet:/var/lib/kubelet \
