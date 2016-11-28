@@ -12,7 +12,7 @@ do
     sleep 1
 done
 echo "Setting DNS"
-WEAVE_DNS_ADDRESS=$(/opt/bin/weave report | jq -r .DNS.Address)
+WEAVE_DNS_ADDRESS=$(/opt/bin/weave report | jq -r .DNS.Address | cut -d ':' -f 1)
 cat <<EOF > /opt/pidalio/weave.dns
 nameserver ${WEAVE_DNS_ADDRESS}
 EOF
