@@ -34,6 +34,8 @@ chown -R core:core /home/core/.kube
     --volume /var/lib/kubelet:/var/lib/kubelet \
     --volume /usr/lib/os-release:/usr/lib/os-release \
     --volume /run:/run \
+    --volume /proc:/proc \
+    --volume /dev:/dev \
     --volume /etc/cni:/etc/cni \
     --volume /var/log:/var/log \
     --volume /etc/kubernetes:/etc/kubernetes \
