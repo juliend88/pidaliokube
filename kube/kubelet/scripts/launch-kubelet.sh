@@ -25,6 +25,10 @@ chown -R core:core /home/core/.kube
 export DOCKER_HOST=unix:///var/run/weave/weave.sock
 /usr/bin/docker pull quay.io/coreos/hyperkube:v1.4.6_coreos.0
 /usr/bin/docker run \
+    --volume /var/lib/docker:/var/lib/docker \
+    --volume /var/lib/kubelet:/var/lib/kubelet \
+    --volume /usr/lib/os-release:/usr/lib/os-release \
+    --volume /run:/run \
     --volume /etc/cni:/etc/cni \
     --volume /var/log:/var/log \
     --volume /etc/kubernetes:/etc/kubernetes \
