@@ -8,8 +8,7 @@ RestartSec=10
 EnvironmentFile=/etc/pidalio.env
 Environment=MASTER=false
 ExecStartPre=/opt/pidalio/kube/kubelet/scripts/retrieve-certificates.sh
-ExecStartPre=/usr/bin/docker pull quay.io/coreos/hyperkube:v1.4.6_coreos.0
 ExecStart=/opt/pidalio/kube/kubelet/scripts/launch-kubelet.sh
-ExecStop=/usr/bin/docker rm -f pidalio-node
+ExecStop=/usr/bin/pkill kubelet
 [X-Fleet]
 Global=True

@@ -29,24 +29,12 @@ chown -R core:core /home/core/.kube
     done
     /usr/bin/docker rm -f pidalio-node
 ) &
-/usr/bin/docker run \
-    --volume /var/lib/docker:/var/lib/docker \
-    --volume /var/lib/kubelet:/var/lib/kubelet \
-    --volume /usr/lib/os-release:/usr/lib/os-release \
-    --volume /run:/run \
-    --volume /etc/cni:/etc/cni \
-    --volume /opt/cni:/opt/cni \
-    --volume /var/log:/var/log \
-    --volume /etc/kubernetes:/etc/kubernetes \
-    --volume /usr/share/ca-certificates:/etc/ssl/certs \
-    --volume /opt/pidalio/weave.dns:/etc/resolv.conf \
-    --net=host \
-    --privileged \
-    --rm \
-    --name=pidalio-node \
-    quay.io/coreos/hyperkube:v1.4.6_coreos.0 \
-    /hyperkube \
-    kubelet \
+echo "Setting DNS"
+WEAVE_DNS_ADDRESS=$(/opt/bin/weave report | jq -r .DNS.Address | cut -d ':' -f 1)
+cat <<EOF > /etc/resolv.conf
+nameserver ${WEAVE_DNS_ADDRESS}
+EOF
+/opt/bin/kubelet \
     --network-plugin=cni \
     --network-plugin-dir=/etc/cni/net.d \
     --api-servers=https://pidalio-apiserver \
