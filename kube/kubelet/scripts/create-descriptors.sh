@@ -42,6 +42,7 @@ then
     until /opt/bin/rbd -m ceph-mon.ceph info toolbox
     do
       /opt/bin/rbd -m ceph-mon.ceph create toolbox --size=10G
+      sleep 10
     done
     if [[ "${MONITORING}" == "True" ]]
     then
@@ -49,10 +50,12 @@ then
         until /opt/bin/rbd -m ceph-mon.ceph info prometheus
         do
           /opt/bin/rbd -m ceph-mon.ceph create prometheus --size=50G
+          sleep 10
         done
         until /opt/bin/rbd -m ceph-mon.ceph info grafana
         do
           /opt/bin/rbd -m ceph-mon.ceph create grafana --size=1G
+          sleep 10
         done
         /opt/bin/kubectl create -f /etc/kubernetes/descriptors/monitoring --namespace=monitoring
     fi
