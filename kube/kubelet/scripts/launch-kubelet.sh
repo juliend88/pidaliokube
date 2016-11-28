@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 mkdir -p /home/core/.kube
+APISERVER_HOST=$(weave dns-lookup pidalio-apiserver)
 cat <<EOF > /home/core/.kube/config
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority: /etc/kubernetes/ssl/ca.pem
-    server: https://10.42.1.1
+    server: http://${APISERVER_HOST}:8080
   name: local
 contexts:
 - context:
@@ -17,9 +17,6 @@ kind: Config
 preferences: {}
 users:
 - name: local
-  user:
-    client-certificate: /etc/kubernetes/ssl/node.pem
-    client-key: /etc/kubernetes/ssl/node-key.pem
 EOF
 chown -R core:core /home/core/.kube
 export DOCKER_HOST=unix:///var/run/weave/weave.sock
