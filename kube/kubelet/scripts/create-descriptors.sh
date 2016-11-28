@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 i=0
-APISERVER_HOST=$(/opt/bin/weave dns-lookup pidalio-apiserver)
-until curl -m 5 http://${APISERVER_HOST}:8080/healthz || [[ $i == 5 ]]
+until curl -m 5 http://localhost:8080/healthz || [[ $i == 5 ]]
 do
     echo "Waiting for master to be ready"
     sleep 10
