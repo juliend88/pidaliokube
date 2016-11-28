@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export DOCKER_HOST=unix:///var/run/weave/weave.sock
-APISERVER_HOST=$(weave dns-lookup pidalio-apiserver)
+APISERVER_HOST=$(/opt/bin/weave dns-lookup pidalio-apiserver)
 (
     sleep 10
     until [[ "$(/usr/bin/curl -s -t 10 http://$APISERVER_HOST:8080/healthz)" != "ok" ]]

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export DOCKER_HOST=unix:///var/run/weave/weave.sock
-APISERVER_HOST=$(weave dns-lookup pidalio-apiserver)
+APISERVER_HOST=$(/opt/bin/weave dns-lookup pidalio-apiserver)
 mkdir -p /home/core/.kube
 cat <<EOF > /home/core/.kube/config
 apiVersion: v1
