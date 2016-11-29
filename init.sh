@@ -11,9 +11,8 @@ fi
 docker pull cedbossneo/docker-etcd-rclone
 export DOCKER_HOST=unix:///var/run/weave/weave.sock
 
-declare -a EXISTING_ETCD
-
 function handleExistingEtcd {
+    EXISTING_ETCD=$(/opt/bin/weave dns-lookup etcd)
     echo "Testing $EXISTING_ETCD"
     curl -s -m 1 http://${EXISTING_ETCD}:2379/v2/stats/self
     if [ $? -eq 0 ]
