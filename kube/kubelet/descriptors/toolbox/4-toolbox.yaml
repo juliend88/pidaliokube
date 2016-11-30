@@ -80,6 +80,8 @@ items:
             k8s-app: traefik-ingress-lb
             name: traefik-ingress-lb
         spec:
+          nodeSelector:
+            network: master
           terminationGracePeriodSeconds: 60
           containers:
           - image: traefik:reblochon
@@ -124,6 +126,8 @@ items:
           labels:
             component: toolbox-backend
         spec:
+          nodeSelector:
+            network: master
           containers:
             - image: cloudwattfr/toolbox-server:dev
               imagePullPolicy: Always
