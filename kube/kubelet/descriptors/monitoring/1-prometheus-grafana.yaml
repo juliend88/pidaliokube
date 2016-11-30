@@ -322,7 +322,7 @@ spec:
       - name: prometheus
         image: prom/prometheus:v1.2.1
         args:
-          - '-storage.local.retention=6h'
+          - '-storage.local.retention=48h'
           - '-storage.local.memory-chunks=500000'
           - '-storage.local.path=/data'
           - '-config.file=/etc/prometheus/prometheus.yml'
