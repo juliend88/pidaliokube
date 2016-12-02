@@ -35,6 +35,8 @@ items:
             db: rethinkdb
             role: replicas
         spec:
+          nodeSelector:
+            network: master
           containers:
             - image: rethinkdb
               name: rethinkdb

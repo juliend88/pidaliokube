@@ -29,6 +29,8 @@ items:
           labels:
             component: rabbitmq
         spec:
+          nodeSelector:
+            network: master
           containers:
             - image: rabbitmq:management
               name: rabbitmq
