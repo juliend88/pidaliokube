@@ -38,6 +38,8 @@ items:
           labels:
             component: toolbox-frontend
         spec:
+          nodeSelector:
+            network: master
           containers:
             - image: cloudwattfr/toolbox-client:dev
               imagePullPolicy: Always
