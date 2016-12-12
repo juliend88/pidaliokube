@@ -41,7 +41,7 @@ items:
           nodeSelector:
             network: master
           containers:
-            - image: cloudwattfr/toolbox-client:dev
+            - image: cloudwattfr/toolbox-client:3.0
               imagePullPolicy: Always
               name: toolbox-frontend
               ports:
@@ -131,7 +131,7 @@ items:
           nodeSelector:
             network: master
           containers:
-            - image: cloudwattfr/toolbox-server:dev
+            - image: cloudwattfr/toolbox-server:3.0
               imagePullPolicy: Always
               command:
                 - /entrypoint.sh
