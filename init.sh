@@ -8,7 +8,7 @@ then
     /opt/pidalio/kube/kubelet/scripts/ceph/install-ceph-tools.sh
     docker pull ceph/base
 fi
-docker pull cedbossneo/docker-etcd-rclone
+docker pull cedbossneo/docker-etcd-rclone:v1
 export DOCKER_HOST=unix:///var/run/weave/weave.sock
 
 function handleExistingEtcd {
@@ -22,7 +22,7 @@ function handleExistingEtcd {
         echo "Etcd $EXISTING_ETCD did not come up...exiting"
         exit 1
     fi
-    docker run --rm --name=etcd-proxy -p 2379:2379 -p 2380:2380 -p 4001:4001 cedbossneo/docker-etcd-rclone /proxy.sh ${EXISTING_ETCD}
+    docker run --rm --name=etcd-proxy -p 2379:2379 -p 2380:2380 -p 4001:4001 cedbossneo/docker-etcd-rclone:v1 /proxy.sh ${EXISTING_ETCD}
 }
 
 function handleNonExistingEtcd {
@@ -33,7 +33,7 @@ function handleNonExistingEtcd {
     echo "Existing ETCD: $EXISTING_ETCD"
     if [[ "$EXISTING_ETCD" == "" ]]
     then
-        docker run -e TOKEN=${PIDALIO_TOKEN} -v /etc/pidalio.etcd.rclone.conf:/root/.rclone.conf --rm --name=etcd -p 2379:2379 -p 2380:2380 -p 4001:4001 cedbossneo/docker-etcd-rclone
+        docker run -e TOKEN=${PIDALIO_TOKEN} -v /etc/pidalio.etcd.rclone.conf:/root/.rclone.conf --rm --name=etcd -p 2379:2379 -p 2380:2380 -p 4001:4001 cedbossneo/docker-etcd-rclone:v1
     else
         handleExistingEtcd
     fi
