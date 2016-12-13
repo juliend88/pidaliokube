@@ -15,6 +15,8 @@ spec:
         app: grafana
         component: core
     spec:
+      nodeSelector:
+        network: master
       containers:
         - image: grafana/grafana:3.1.1
           name: grafana-core
@@ -118,6 +120,8 @@ spec:
         app: grafana
         component: import-dashboards
     spec:
+      nodeSelector:
+        network: master
       containers:
       - name: grafana-import-dashboards
         image: docker
@@ -318,6 +322,8 @@ spec:
         app: prometheus
         component: core
     spec:
+      nodeSelector:
+        network: master
       containers:
       - name: prometheus
         image: prom/prometheus:v1.2.1

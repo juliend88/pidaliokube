@@ -17,6 +17,8 @@ spec:
         app: ceph
         daemon: moncheck
     spec:
+      nodeSelector:
+        network: master
       serviceAccount: default
       volumes:
         - name: ceph-conf

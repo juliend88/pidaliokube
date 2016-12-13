@@ -33,6 +33,8 @@ spec:
             }
           }
     spec:
+      nodeSelector:
+        network: master
       serviceAccount: default
       volumes:
         - name: ceph-conf
