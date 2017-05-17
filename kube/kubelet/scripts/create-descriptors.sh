@@ -38,6 +38,7 @@ then
     until [ "$(/opt/bin/kubectl --kubeconfig=/home/core/.kube/config get pods --namespace=ceph | tail -n +2 | egrep -v '(.*)1/1(.*)Running' | wc -l)" == "0" ]
     do
       echo "Waiting for ceph to be ready"
+       /opt/bin/kubectl delete namespace ceph
       sleep 10
     done
     echo "Creating toolbox disk in ceph"
