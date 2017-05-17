@@ -64,7 +64,7 @@ spec:
             - name: CLUSTER
               value: ceph
             - name: CEPH_GET_ADMIN_KEY
-              value: "1"
+              value: "0"
           livenessProbe:
               tcpSocket:
                 port: 6800

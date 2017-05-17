@@ -33,8 +33,6 @@ spec:
             }
           }
     spec:
-      nodeSelector:
-        network: master
       serviceAccount: default
       volumes:
         - name: ceph-conf
@@ -91,7 +89,7 @@ spec:
           resources:
             requests:
               memory: "50Mi"
-              cpu: "100m"
+              cpu: "1000m"
             limits:
               memory: "100Mi"
-              cpu: "200m"
+              cpu: "2000m"
