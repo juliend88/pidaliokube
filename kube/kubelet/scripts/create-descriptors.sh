@@ -11,6 +11,7 @@ if [[ $i == 5 ]]; then exit 1; fi
 #kubectl apply -f https://git.io/weave-kube-1.6
 # Initialize Kubernetes Addons
 /opt/bin/kubectl --kubeconfig=/home/core/.kube/config create -f /etc/kubernetes/descriptors/dns
+sleep 20
 # Initialize Ceph
 if [[ "${CEPH}" == "True" ]]
 then
@@ -38,7 +39,6 @@ then
     until [ "$(/opt/bin/kubectl --kubeconfig=/home/core/.kube/config get pods --namespace=ceph | tail -n +2 | egrep -v '(.*)1/1(.*)Running' | wc -l)" == "0" ]
     do
       echo "Waiting for ceph to be ready"
-       /opt/bin/kubectl delete namespace ceph
       sleep 10
     done
     echo "Creating toolbox disk in ceph"
