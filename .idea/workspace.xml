@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73f3338e-b48a-437d-95ed-fbce97b5c654" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mds-v1-dp.yaml" afterPath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mds-v1-dp.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mon-check-v1-dp.yaml" afterPath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mon-check-v1-dp.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mon-v1-dp.yaml" afterPath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mon-v1-dp.yaml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml" afterPath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,8 +60,8 @@
       <file leaf-file-name="ceph-osd-v1-ds-disk.yaml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="66" column="23" lean-forward="false" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+            <state relative-caret-position="492">
+              <caret line="68" column="25" lean-forward="false" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -1032,12 +1028,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495014564903</updated>
-      <workItem from="1495014566703" duration="2996000" />
+      <workItem from="1495014566703" duration="4868000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2996000" />
+    <option name="totallyTimeSpent" value="4868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="26" width="1608" height="854" extended-state="6" />
@@ -1231,8 +1227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="66" column="23" lean-forward="false" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+        <state relative-caret-position="492">
+          <caret line="68" column="25" lean-forward="false" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
           <folding />
         </state>
       </provider>

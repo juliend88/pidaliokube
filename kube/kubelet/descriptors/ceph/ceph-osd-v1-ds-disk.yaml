@@ -64,7 +64,9 @@ spec:
             - name: CLUSTER
               value: ceph
             - name: CEPH_GET_ADMIN_KEY
-              value: "0"
+              value: "1"
+            - name: OSD_TYPE
+              value: disk
           livenessProbe:
               tcpSocket:
                 port: 6800
