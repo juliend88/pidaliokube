@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73f3338e-b48a-437d-95ed-fbce97b5c654" name="Default" comment="" />
+    <list default="true" id="73f3338e-b48a-437d-95ed-fbce97b5c654" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml" afterPath="$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +50,8 @@
       <file leaf-file-name="ceph-osd-v1-ds-disk.yaml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="68" column="25" lean-forward="false" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+            <state relative-caret-position="583">
+              <caret line="58" column="34" lean-forward="false" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -1016,12 +1018,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495014564903</updated>
-      <workItem from="1495014566703" duration="5134000" />
+      <workItem from="1495014566703" duration="6082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5134000" />
+    <option name="totallyTimeSpent" value="6082000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="26" width="1608" height="854" extended-state="6" />
@@ -1149,14 +1151,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kube/kubelet/scripts/create-descriptors.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-stats-v1-svc.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1181,14 +1175,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mon-v1-dp.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="94" column="26" lean-forward="false" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-stats-v1-dp.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-288">
@@ -1205,6 +1191,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mon-v1-dp.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1410">
+          <caret line="94" column="26" lean-forward="false" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-mds-v1-dp.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="642">
@@ -1213,10 +1207,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/kube/kubelet/scripts/create-descriptors.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/kube/kubelet/descriptors/ceph/ceph-osd-v1-ds-disk.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="68" column="25" lean-forward="false" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+        <state relative-caret-position="583">
+          <caret line="58" column="34" lean-forward="false" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
           <folding />
         </state>
       </provider>
