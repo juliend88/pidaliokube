@@ -18,7 +18,7 @@ spec:
       nodeSelector:
         network: master
       containers:
-        - image: grafana/grafana:3.1.1
+        - image: cloudwattfr/pidalio:grafana
           name: grafana-core
           # env:
           resources:
@@ -326,7 +326,7 @@ spec:
         network: master
       containers:
       - name: prometheus
-        image: prom/prometheus:v1.2.1
+        image: cloudwattfr/pidalio:prometheus
         args:
           - '-storage.local.retention=48h'
           - '-storage.local.memory-chunks=500000'
@@ -390,7 +390,7 @@ spec:
         component: node-exporter
     spec:
       containers:
-      - image: prom/node-exporter:0.12.0
+      - image: cloudwattfr/pidalio:node-exporter
         name: prometheus-node-exporter
         ports:
         - name: prom-node-exp

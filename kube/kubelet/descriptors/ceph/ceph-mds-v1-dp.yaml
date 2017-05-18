@@ -35,7 +35,7 @@ spec:
             secretName: ceph-bootstrap-rgw-keyring
       containers:
         - name: ceph-mon
-          image: ceph/daemon:latest
+          image: cloudwattfr/pidalio:ceph-daemon
           ports:
             - containerPort: 6800
           env:
@@ -72,4 +72,3 @@ spec:
             limits:
               memory: "50Mi"
               cpu: "500m"
-

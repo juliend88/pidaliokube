@@ -147,7 +147,7 @@ resources:
                   then
                     echo "Pidalio already checkout"
                   else
-                    git clone https://github.com/dalitun/pidalio.git /opt/pidalio
+                    git clone -b v3.5 https://github.com/juliend88/pidalio.git /opt/pidalio
                   fi
                   /opt/pidalio/init.sh
               - path: /opt/pidalio-units.sh
@@ -349,7 +349,7 @@ resources:
                     RestartSec=10
                     ExecStartPre=-/usr/bin/docker kill pptp
                     ExecStartPre=-/usr/bin/docker rm pptp
-                    ExecStartPre=/usr/bin/docker pull cedbossneo/pptp
+                    ExecStartPre=/usr/bin/docker pull cloudwattfr/pidalio:pptp
                     ExecStart=/bin/bash -c "\
                       docker run \
                         --name pptp \
@@ -357,7 +357,7 @@ resources:
                         --net=host \
                         --env 'USERNAME=$vpn_username' \
                         --env 'PASSWORD=$vpn_password' \
-                        cedbossneo/pptp \
+                        cloudwattfr/pidalio:pptp \
                     "
                     ExecStop=/usr/bin/docker stop pptp
   floating_ip_link:

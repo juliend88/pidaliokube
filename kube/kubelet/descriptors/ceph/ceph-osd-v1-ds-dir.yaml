@@ -40,7 +40,7 @@ spec:
             secretName: ceph-bootstrap-rgw-keyring
       containers:
         - name: osd-pod
-          image: ceph/daemon:latest
+          image: cloudwattfr/pidalio:ceph-daemon
           imagePullPolicy: Always
           volumeMounts:
             - name: devices
